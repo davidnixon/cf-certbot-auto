@@ -1,16 +1,9 @@
-FROM openwhisk/actionloop-v2:latest as builder
-FROM certbot/certbot
+FROM ibmfunctions/action-python-v3.7
 
-RUN mkdir -p /proxy/bin /proxy/lib /proxy/action
-WORKDIR /proxy
-COPY --from=builder /bin/proxy /bin/proxy
-ADD lib/launcher.py /proxy/lib/launcher.py
-ADD bin/compile /proxy/bin/compile
-ENV OW_COMPILER=/proxy/bin/compile
- 
-RUN apk add curl
+RUN pip install --upgrade pip
+RUN pip install certbot
+
 WORKDIR /home/app/
 COPY *.sh ./
-#ENTRYPOINT [ "/bin/sh" ]
-#ENTRYPOINT [ "certbot", "--version"]
-ENTRYPOINT ["/bin/proxy"]
+
+#ENTRYPOINT ["/bin/proxy"]
