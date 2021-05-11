@@ -1,6 +1,7 @@
 
 #!/bin/bash
-echo $CERTBOT_DOMAIN
+echo "EMAIL $EMAIL"
+echo "GODADDY_KEY $GODADDY_KEY"
 set | grep CERTBOT # debugging
 
 # https://certbot.eff.org/docs/using.html#certbot-command-line-options
@@ -26,4 +27,4 @@ curl -X GET "https://api.godaddy.com/v1/domains/$CERTBOT_DOMAIN/records/TXT/_acm
   -H  "Authorization: sso-key $API_KEY"
 
 # Sleep to make sure the change has time to propagate over to DNS
-sleep 60
+sleep 30
