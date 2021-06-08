@@ -5,5 +5,6 @@ RUN pip install certbot
 RUN pip install PyJwt==1.7.1
 RUN curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
 RUN ibmcloud cf install
+RUN ibmcloud config --check-version=false
 RUN mkdir -p /home/app/
 COPY *.sh /home/app/
