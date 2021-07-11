@@ -10,19 +10,19 @@ set | grep CERTBOT # debugging
 API_KEY=$GODADDY_KEY
 
 # DELETE TXT Record in case it exists
-curl -X DELETE "https://api.godaddy.com/v1/domains/$CERTBOT_DOMAIN/records/TXT/_acme-challenge" \
+curl --silent -X DELETE "https://api.godaddy.com/v1/domains/$CERTBOT_DOMAIN/records/TXT/_acme-challenge" \
   -H  "accept: application/json" \
   -H  "Authorization: sso-key $API_KEY"
 
 # Create TXT record
-curl -X PATCH "https://api.godaddy.com/v1/domains/$CERTBOT_DOMAIN/records" \
+curl --silent -X PATCH "https://api.godaddy.com/v1/domains/$CERTBOT_DOMAIN/records" \
   -H  "accept: application/json" \
   -H  "Content-Type: application/json" \
   -H  "Authorization: sso-key $API_KEY" \
-  -d "[  {    \"data\": \"$CERTBOT_VALIDATION\",    \"name\": \"_acme-challenge\",    \"ttl\": 3600,    \"type\": \"TXT\"  }]"
+  -d "[  { \"data\": \"$CERTBOT_VALIDATION\", \"name\": \"_acme-challenge\", \"ttl\": 3600, \"type\": \"TXT\"  }]"
 
 # Verify GoDaddy created it
-curl -X GET "https://api.godaddy.com/v1/domains/$CERTBOT_DOMAIN/records/TXT/_acme-challenge" \
+curl --silent -X GET "https://api.godaddy.com/v1/domains/$CERTBOT_DOMAIN/records/TXT/_acme-challenge" \
   -H  "accept: application/json" \
   -H  "Authorization: sso-key $API_KEY"
 
