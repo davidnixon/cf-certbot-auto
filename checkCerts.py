@@ -21,11 +21,9 @@ import requests
 
 DEBUG = 1
 EXPIRING_SOON = 15
-FORCE_RUN = False
-USE_SELF_SIGNED = True  # debug helper to skip Let's Encrypt and use a self signed certificate instead
+USE_SELF_SIGNED = False  # debug helper to skip Let's Encrypt and use a self signed certificate instead
 # debug helper to dry run the Let's Encrypt certificate creation but skip actually generating a certificate
 LETS_CERT_DRYRUN = False
-
 
 CERTBOT = "/usr/local/bin/certbot"
 
@@ -39,7 +37,7 @@ class CertificateData:
         self.guid = guid
 
 
-class CertificateManagerLetsGoCf:
+class CfCertbot:
     """Manage the steps need to renew a certificate"""
 
     def __init__(self, params):
@@ -422,6 +420,8 @@ class CertificateManagerLetsGoCf:
                     print(response.text)
 
             if response.status_code == 404:
+                if DEBUG > 0:
+                    print("%s missing certificate" % (domain_name))
                 return "*." + domain_name
 
             response.raise_for_status()
@@ -486,12 +486,13 @@ class CertificateManagerLetsGoCf:
         return expiring
 
     def certbot_cert(self):
-        """Generate Let's encrypt for for the expiring certificates"""
+        """Generate SSL certificates for the expiring certificates"""
 
         expiring_soon = self.cf_get_expiring_domains()
 
         for cert in expiring_soon:
-            print("updating certificate for %s (%s)" % (cert.domain_name, cert.cn))
+            if DEBUG > 0:
+                print("updating certificate for %s (%s)" % (cert.domain_name, cert.cn))
 
             if USE_SELF_SIGNED:
                 self.self_signed_cert(cert.domain_name)
@@ -504,8 +505,8 @@ class CertificateManagerLetsGoCf:
 
 
 def main(params):
-    """This is the IBM function entry point. Find expiered/expiring certificates and update them"""
-    manager = CertificateManagerLetsGoCf(params)
+    """This is the IBM function entry point. Find missing/expired/expiring certificates and update them"""
+    manager = CfCertbot(params)
     if manager.error:
         return manager.message
 
