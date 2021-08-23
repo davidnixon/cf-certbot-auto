@@ -1,6 +1,6 @@
-# Use Let's Encrypt SSL certificates with IBM Cloud Foundry
+# How to Automate Let's Encrypt SSL certificates with IBM Cloud Foundry
 
-For personal or hobby sites many developers are very familiar with [Let’s Encrypt](https://letsencrypt.org/) and the tool [certbot](https://certbot.eff.org/). Let’s Encrypt and cert bot are free to use for anyone who owns a domain and in many cases can automatically keep your certificates updated. The code presented here adds automation for updating certificates for use with IBM Cloud Foundry.
+For personal or hobby sites, many developers are very familiar with the free tool [Let’s Encrypt](https://letsencrypt.org/) and the associated tool [certbot](https://certbot.eff.org/) which let you encrypt your site with a SSL certificate. But certbot doesn’t have built-in support to automatically renew when using IBM Cloud Foundry, so custom DevOps automation is needed.
 
 The code here bridges that gap between IBM Cloud Foundry and Let's Encrypt so that you can use Let's Encrypt certificates and automate the renewal of those certificates and deploy them to your Cloud Foundry organization.
 
