@@ -25,7 +25,7 @@ The code assumes that all the domains and certificates can be managed by the sam
 
 If the code fails or times out, your site may be left with a missing certificate. Again, the target use is for personal or hobby sites where I think this is an acceptable risk.
 
-Depending on your targeted region, I have found that the deletion and the upload of certificates often does time out. Even though the operation times out, the back-end process does eventually complete successfully. IBM support is aware of this but as of this writing there is no ETA for a permanent solution. If, for instance, the delete times out, your site will be without a certificate until the next time the automation runs. The automation by default twice a day so this is an acceptable risk for me. If the upload times out, you will see that the **action** returned an error but eventually the certificate is uploaded.
+Depending on your targeted region, I have found that the deletion and the upload of certificates often does time out. Even though the operation times out, the back-end process does eventually complete successfully. IBM support is aware of this but as of this writing there is no ETA for a permanent solution. If, for instance, the delete times out, your site will be without a certificate until the next time the automation runs. The automation runs by default twice a day so this is an acceptable risk for me. If the upload times out, you will see that the **action** returned an error but eventually the certificate is uploaded.
 
 ## Pre-reqs
 
