@@ -39,7 +39,7 @@ Depending on your targeted region, I have found that the deletion and the upload
 ## Quick start
 
 - Login to IBM cloud account cli
-- List domains in your account: `ic cf domains`
+- List domains in your account: `ibmcloud cf domains`
   - verify that all the "owned" or "private domains" can be managed by GoDaddy DNS provider
 - Deploy the action and trigger
 
