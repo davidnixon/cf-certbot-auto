@@ -1,6 +1,6 @@
 # How to Automate Let's Encrypt SSL certificates for IBM Cloud Foundry
 
-For personal or hobby sites, many developers are very familiar with the free tool [Let’s Encrypt](https://letsencrypt.org/) and the associated tool [certbot](https://certbot.eff.org/) which let you encrypt your site with a SSL certificate. But certbot doesn’t have built-in support to automatically renew when using IBM Cloud Foundry, so custom DevOps automation is needed.
+For open source or personal or hobby sites, many developers are very familiar with the free tool [Let’s Encrypt](https://letsencrypt.org/) and the associated tool [certbot](https://certbot.eff.org/) which let you encrypt your site with a SSL certificate. But certbot doesn’t have built-in support to automatically renew when using IBM Cloud Foundry, so custom DevOps automation is needed.
 
 The code here bridges that gap between IBM Cloud Foundry and Let's Encrypt so that you can use Let's Encrypt certificates and automate the renewal of those certificates and deploy them to your Cloud Foundry organization.
 
@@ -23,7 +23,7 @@ The code assumes that all the domains and certificates can be managed by the sam
 
 ## Known issues
 
-If the code fails or times out, your site may be left with a missing certificate. Again, the target use is for personal or hobby sites where I think this is an acceptable risk.
+If the code fails or times out, your site may be left with a missing certificate. Again, the target use is for open source or personal or hobby sites where I think this is an acceptable risk.
 
 Depending on your targeted region, I have found that the deletion and the upload of certificates often does time out. Even though the operation times out, the back-end process does eventually complete successfully. IBM support is aware of this but as of this writing there is no ETA for a permanent solution. If, for instance, the delete times out, your site will be without a certificate until the next time the automation runs. The automation runs by default twice a day so this is an acceptable risk for me. If the upload times out, you will see that the **action** returned an error but eventually the certificate is uploaded.
 
