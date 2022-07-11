@@ -1,3 +1,6 @@
+# Deprecated
+IBM Cloud Foundry Public is deprecated. For more information, see http://ibm.biz/ibmcf-announce
+
 # How to Automate Let's Encrypt SSL certificates for IBM Cloud Foundry
 
 For open source or personal or hobby sites, many developers are very familiar with the free tool [Let’s Encrypt](https://letsencrypt.org/) and the associated tool [certbot](https://certbot.eff.org/) which let you encrypt your site with a SSL certificate. But certbot does not have built-in support to automatically renew when using IBM Cloud Foundry, so custom DevOps automation is needed.
